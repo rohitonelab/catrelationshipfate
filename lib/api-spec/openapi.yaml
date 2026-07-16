@@ -3,13 +3,15 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Cat Court API - A cinematic relationship experience
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: sessions
+    description: Cat Court session operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,127 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /sessions:
+    post:
+      operationId: createSession
+      tags: [sessions]
+      summary: Create a new Cat Court session
+      description: Creates a session and returns the session ID and partner B invite token
+      responses:
+        "201":
+          description: Session created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionCreated"
+
+  /sessions/{sessionId}:
+    get:
+      operationId: getSession
+      tags: [sessions]
+      summary: Get session status
+      description: Returns current session state - whether each partner has answered and if the verdict is ready
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Session found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionStatus"
+        "404":
+          description: Session not found
+
+  /sessions/{sessionId}/answers-a:
+    post:
+      operationId: submitAnswersA
+      tags: [sessions]
+      summary: Submit Partner A answers
+      description: Submits Partner A's answers. Session must be in 'waiting_a' state.
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnswersSubmission"
+      responses:
+        "200":
+          description: Answers submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionStatus"
+        "400":
+          description: Invalid state or bad input
+        "404":
+          description: Session not found
+
+  /sessions/{sessionId}/answers-b:
+    post:
+      operationId: submitAnswersB
+      tags: [sessions]
+      summary: Submit Partner B answers
+      description: Submits Partner B's answers. Requires the partnerBToken. Triggers verdict computation.
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PartnerBSubmission"
+      responses:
+        "200":
+          description: Answers submitted and verdict computed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionStatus"
+        "400":
+          description: Invalid state, bad input, or wrong token
+        "404":
+          description: Session not found
+
+  /sessions/{sessionId}/verdict:
+    get:
+      operationId: getVerdict
+      tags: [sessions]
+      summary: Get the final verdict
+      description: Returns all verdict cards once both partners have answered
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Verdict ready
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Verdict"
+        "400":
+          description: Verdict not ready yet
+        "404":
+          description: Session not found
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +157,122 @@ components:
       required:
         - status
 
+    SessionCreated:
+      type: object
+      required: [sessionId, partnerBToken]
+      properties:
+        sessionId:
+          type: string
+          description: The unique session ID (for Partner A to track)
+        partnerBToken:
+          type: string
+          description: The invite token for Partner B to join
+
+    SessionStatus:
+      type: object
+      required: [sessionId, state, partnerBToken]
+      properties:
+        sessionId:
+          type: string
+        partnerBToken:
+          type: string
+        state:
+          type: string
+          enum: [waiting_a, waiting_b, complete]
+          description: "waiting_a = partner A hasn't answered yet, waiting_b = waiting for partner B, complete = both answered"
+        partnerAName:
+          type: ["string", "null"]
+        partnerBName:
+          type: ["string", "null"]
+        createdAt:
+          type: string
+          format: date-time
+
+    AnswersSubmission:
+      type: object
+      required: [partnerName, answers]
+      properties:
+        partnerName:
+          type: string
+          description: Partner A's name or nickname
+          minLength: 1
+          maxLength: 50
+        answers:
+          type: array
+          description: Array of 10 integer answers (0-3 index of chosen option)
+          items:
+            type: integer
+            minimum: 0
+            maximum: 3
+          minItems: 10
+          maxItems: 10
+
+    PartnerBSubmission:
+      type: object
+      required: [partnerBToken, partnerName, answers]
+      properties:
+        partnerBToken:
+          type: string
+          description: The invite token Partner B received
+        partnerName:
+          type: string
+          description: Partner B's name or nickname
+          minLength: 1
+          maxLength: 50
+        answers:
+          type: array
+          description: Array of 10 integer answers (0-3 index of chosen option)
+          items:
+            type: integer
+            minimum: 0
+            maximum: 3
+          minItems: 10
+          maxItems: 10
+
+    VerdictCard:
+      type: object
+      required: [type, emoji, title, description]
+      properties:
+        type:
+          type: string
+          enum: [couple_title, secret_strength, mild_complaint, funniest_contradiction, future_prediction, court_sentence]
+        emoji:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        catReaction:
+          type: ["string", "null"]
+
+    Verdict:
+      type: object
+      required: [sessionId, partnerAName, partnerBName, cards, alignmentScore, diceRoll]
+      properties:
+        sessionId:
+          type: string
+        partnerAName:
+          type: string
+        partnerBName:
+          type: string
+        alignmentScore:
+          type: integer
+          description: Overall alignment score 0-100
+        diceRoll:
+          type: object
+          required: [die1, die2, total]
+          properties:
+            die1:
+              type: integer
+              minimum: 1
+              maximum: 6
+            die2:
+              type: integer
+              minimum: 1
+              maximum: 6
+            total:
+              type: integer
+        cards:
+          type: array
+          items:
+            $ref: "#/components/schemas/VerdictCard"

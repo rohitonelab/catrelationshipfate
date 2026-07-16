@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Cat Court"
+version = "1.0.0"
+id = "artifacts/cat-court"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23102
+
+[services.development]
+run = "pnpm --filter @workspace/cat-court run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/cat-court", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/cat-court/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23102"
+BASE_PATH = "/"

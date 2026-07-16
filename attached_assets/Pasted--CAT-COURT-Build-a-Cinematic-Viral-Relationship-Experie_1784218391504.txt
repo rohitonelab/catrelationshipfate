@@ -1,0 +1,431 @@
+# 🐱 CAT COURT — Build a Cinematic Viral Relationship Experience
+
+You are a senior product designer, creative director, motion designer and frontend engineer.
+
+Do NOT build a normal quiz.
+
+Build an experience that feels like entering a magical courtroom ruled by an ancient Cat Wizard.
+
+The emotion should feel like:
+
+* Akinator
+* Hogwarts
+* Monument Valley
+* Apple-level polish
+* AAA mobile game onboarding
+
+This should feel like a premium game, not a web form.
+
+---
+
+# Brand
+
+Cat Court
+
+Tagline:
+
+"The Cat already knows the truth."
+
+---
+
+# Visual Style
+
+Dark magical fantasy.
+
+Purple.
+
+Deep blue.
+
+Gold.
+
+Moonlight.
+
+Floating particles.
+
+Ancient stone.
+
+Soft glowing runes.
+
+Cat eyes glowing in the dark.
+
+Everything should breathe slowly.
+
+The UI should never feel static.
+
+---
+
+# Landing
+
+Huge animated Cat Wizard.
+
+The eyes subtly follow the cursor.
+
+Tail moves occasionally.
+
+Ears twitch randomly.
+
+Dice float beside the throne.
+
+Soft magical ambient sound.
+
+Headline
+
+"The Court is now in session."
+
+Subheadline
+
+"Every relationship tells two stories."
+
+"The Cat listens to both."
+
+CTA
+
+🐾 Enter The Court
+
+Button should slightly float.
+
+Hover should create magical particles.
+
+---
+
+# Scene Transition
+
+Never instantly change pages.
+
+Every transition should use
+
+* smoke
+* floating particles
+* blur
+* zoom
+* cinematic fades
+
+The experience should feel like walking deeper into a magical temple.
+
+---
+
+# Cat Personality
+
+The Cat is calm.
+
+Confident.
+
+Slightly sarcastic.
+
+Never rude.
+
+Sometimes funny.
+
+Never speaks too much.
+
+It pauses before speaking.
+
+Example
+
+😼
+
+"...Interesting."
+
+...
+
+"I've heard enough."
+
+---
+
+# Interrogation
+
+Never use forms.
+
+Never say
+
+Question 1
+
+Instead
+
+The Cat asks.
+
+Each question appears as dialogue.
+
+Speech bubble animation.
+
+Typing animation.
+
+Cat blinks while speaking.
+
+Each answer button gently floats.
+
+Selecting an answer makes the Cat nod.
+
+The notebook beside the Cat automatically writes.
+
+Feather pen writes by itself.
+
+---
+
+# Smart Interrogation
+
+The second partner should NEVER receive identical wording.
+
+The Cat should ask different questions that investigate the same idea.
+
+Example
+
+Partner A
+
+"He apologizes first."
+
+Partner B
+
+"When was the last time you sincerely apologized?"
+
+This makes the Cat feel intelligent.
+
+---
+
+# Progress
+
+Instead of
+
+7/10
+
+Show
+
+Evidence Collected
+
+████████░░
+
+or
+
+The Cat's Notebook
+
+filling with glowing pages.
+
+---
+
+# Waiting Screen
+
+After Partner A finishes.
+
+Cat closes notebook.
+
+Looks directly at user.
+
+"I have heard one witness."
+
+"Truth has two voices."
+
+Show magical invitation link.
+
+Animated floating envelope.
+
+Countdown orb slowly rotating.
+
+Waiting animation should never feel boring.
+
+---
+
+# Partner Joins
+
+Portal opens.
+
+Light enters.
+
+Cat watches silently.
+
+Notebook opens automatically.
+
+Second interrogation begins.
+
+---
+
+# Final Sequence
+
+Music becomes quieter.
+
+Room darkens.
+
+Camera slowly zooms toward the Cat.
+
+Cat stands.
+
+Walks toward the Dice of Truth.
+
+Tail swings naturally.
+
+Eyes glow brighter.
+
+Cat places one paw on each die.
+
+Everything pauses.
+
+Particles freeze.
+
+Heartbeat sound.
+
+Cat whispers
+
+"The Court is ready."
+
+User taps
+
+🎲 Roll The Dice
+
+Both dice spin with realistic physics.
+
+Cat watches carefully.
+
+Just before they stop...
+
+Cat taps one die.
+
+Dice changes slightly.
+
+Everything freezes.
+
+Camera zooms.
+
+Number glows.
+
+Ancient bell sound.
+
+Result
+
+4 + 5 = 9
+
+Card 9 slowly rises from magical smoke.
+
+---
+
+# Verdict Cards
+
+Never instantly appear.
+
+Card slowly rotates upward.
+
+Gold embossing.
+
+Soft light leaks.
+
+Tiny sparkles.
+
+Card flips dramatically.
+
+Each reveal feels rewarding.
+
+Examples
+
+💚 Secret Strength
+
+🚩 Mild Complaint
+
+😂 Funniest Contradiction
+
+🔮 Future Prediction
+
+⚖ Court Sentence
+
+🏆 Couple Title
+
+Each reveal has unique animation.
+
+---
+
+# Cat Reactions
+
+After every card
+
+Cat reacts.
+
+Examples
+
+😼
+
+"I suspected as much."
+
+...
+
+"Hmm..."
+
+...
+
+"The evidence is overwhelming."
+
+...
+
+"I should probably pretend I didn't see that."
+
+Never repeat reactions often.
+
+---
+
+# Final Report
+
+Generate a premium report.
+
+Looks like an ancient court judgment.
+
+Seal of the Cat Court.
+
+Gold stamp.
+
+Beautiful typography.
+
+Includes
+
+🏆 Couple Title
+
+💚 Secret Strength
+
+🚩 Mild Complaint
+
+😂 Biggest Contradiction
+
+🔮 Prediction
+
+⚖ Court Sentence
+
+---
+
+# Share Screen
+
+The report should be screenshot-worthy.
+
+Animated confetti.
+
+Floating hearts.
+
+Magic sparkles.
+
+Instagram Story ratio.
+
+One tap
+
+Share
+
+Download
+
+Invite another couple.
+
+---
+
+# Motion Design
+
+Everything should move.
+
+Nothing should remain static.
+
+Use
+
+* GSAP
+* Framer Motion
+* Lottie where appropriate
+* Smooth spring animations
+* Parallax
+* Floating ambient particles
+* Depth effects
+* Soft bloom
+* Glassmorphism mixed with magical fantasy
+
+Animations should be tasteful, smooth and cinematic—not flashy for the sake of it.
+
+Aim for an experience that feels alive and polished from the first second to the final share screen.
