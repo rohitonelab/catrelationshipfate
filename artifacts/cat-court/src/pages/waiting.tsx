@@ -33,7 +33,7 @@ export default function WaitingPage() {
   }, [session?.state, sessionId, setLocation]);
 
   const inviteLink = typeof window !== 'undefined' 
-    ? `${window.location.origin}/join/${session?.partnerBToken}`
+    ? `${window.location.origin}/join/${sessionId}/${session?.partnerBToken}`
     : '';
 
   const copyLink = async () => {

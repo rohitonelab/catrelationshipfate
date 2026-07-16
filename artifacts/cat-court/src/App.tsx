@@ -17,7 +17,7 @@ function Router() {
       <Route path="/" component={LandingPage} />
       <Route path="/interrogate" component={InterrogatePage} />
       <Route path="/waiting/:sessionId" component={WaitingPage} />
-      <Route path="/join/:partnerBToken" component={JoinPage} />
+      <Route path="/join/:sessionId/:partnerBToken" component={JoinPage} />
       <Route path="/verdict/:sessionId" component={VerdictPage} />
       <Route path="/report/:sessionId" component={ReportPage} />
       <Route component={NotFound} />

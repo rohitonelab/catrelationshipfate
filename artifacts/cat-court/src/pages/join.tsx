@@ -10,6 +10,7 @@ import { PARTNER_B_QUESTIONS } from '@/data/questions';
 
 export default function JoinPage() {
   const params = useParams();
+  const sessionId = params.sessionId!;
   const partnerBToken = params.partnerBToken!;
   const [_, setLocation] = useLocation();
   const submitAnswers = useSubmitAnswersB();
@@ -59,7 +60,7 @@ export default function JoinPage() {
       } else {
         // Submit
         submitAnswers.mutate({
-          sessionId: partnerBToken, // The backend will use this or the body token to find the session
+          sessionId,
           data: {
             partnerBToken,
             partnerName: name,

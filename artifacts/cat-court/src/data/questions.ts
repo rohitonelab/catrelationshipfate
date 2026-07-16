@@ -48,6 +48,11 @@ export const PARTNER_A_QUESTIONS = [
     id: 10,
     question: "If this relationship were a weather pattern, it would be...",
     options: ["Warm sunny days", "Exciting thunderstorms", "Cozy overcast fog", "Unpredictable — anything goes"]
+  },
+  {
+    id: 11,
+    question: "What does love look like in your relationship, day to day?",
+    options: ["Constant small gestures", "Deep conversations", "Comfortable silence", "Grand declarations"]
   }
 ];
 
@@ -101,5 +106,10 @@ export const PARTNER_B_QUESTIONS = [
     id: 10,
     question: "Complete this sentence: 'This relationship could use a little more...'",
     options: ["Adventure and spontaneity", "Deep conversation", "Physical closeness", "Nothing — I wouldn't change it"]
+  },
+  {
+    id: 11,
+    question: "How does your partner show up for you on hard days?",
+    options: ["They always know what to do", "They try their best", "It's hit or miss", "They don't really notice"]
   }
 ];
