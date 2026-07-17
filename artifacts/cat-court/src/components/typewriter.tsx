@@ -31,13 +31,14 @@ export function Typewriter({ text, speed = 40, onComplete, className = "" }: Typ
       setIsTyping(false);
       if (onComplete) onComplete();
     }
+    return;
   }, [currentIndex, text, speed, isTyping, onComplete]);
 
   return (
     <span className={className}>
       {displayedText}
-      <motion.span 
-        animate={{ opacity: [1, 0, 1] }} 
+      <motion.span
+        animate={{ opacity: [1, 0, 1] }}
         transition={{ duration: 0.8, repeat: Infinity }}
         className="inline-block ml-[2px] w-[6px] h-[1em] bg-gold align-middle"
       />

@@ -39,33 +39,41 @@ export default function VerdictPage() {
   const rollDice = () => {
     setIsRolling(true);
     setStage('rolling');
-    
-    // Zoom in on container
-    gsap.to(containerRef.current, { scale: 1.1, duration: 2, ease: "power2.inOut" });
-
-    // 3D Dice rotation animation
-    if (diceRef1.current && diceRef2.current) {
-      gsap.to([diceRef1.current, diceRef2.current], {
-        rotateX: "random(1080, 2160)",
-        rotateY: "random(1080, 2160)",
-        rotateZ: "random(1080, 2160)",
-        duration: 3,
-        ease: "power2.inOut",
-        onComplete: () => {
-          setIsRolling(false);
-          // Set to final rotations based on values (simplified, usually maps value to specific rotation)
-          gsap.set(diceRef1.current, { rotateX: 0, rotateY: 0, rotateZ: 0 });
-          gsap.set(diceRef2.current, { rotateX: 0, rotateY: 0, rotateZ: 0 });
-          
-          setTimeout(() => {
-            gsap.to(containerRef.current, { scale: 1, duration: 1, ease: "power2.inOut" });
-            setStage('cards');
-            setCurrentCardIndex(0);
-          }, 2000);
-        }
-      });
-    }
   };
+
+  useEffect(() => {
+    if (stage !== 'rolling') return;
+
+    const ctx = gsap.context(() => {
+      // Zoom in on container
+      gsap.to(containerRef.current, { scale: 1.1, duration: 2, ease: "power2.inOut" });
+
+      // 3D Dice rotation animation
+      if (diceRef1.current && diceRef2.current) {
+        gsap.to([diceRef1.current, diceRef2.current], {
+          rotateX: "random(1080, 2160)",
+          rotateY: "random(1080, 2160)",
+          rotateZ: "random(1080, 2160)",
+          duration: 3,
+          ease: "power2.inOut",
+          onComplete: () => {
+            setIsRolling(false);
+            // Set to final rotations based on values (simplified, usually maps value to specific rotation)
+            gsap.set(diceRef1.current, { rotateX: 0, rotateY: 0, rotateZ: 0 });
+            gsap.set(diceRef2.current, { rotateX: 0, rotateY: 0, rotateZ: 0 });
+            
+            setTimeout(() => {
+              gsap.to(containerRef.current, { scale: 1, duration: 1, ease: "power2.inOut" });
+              setStage('cards');
+              setCurrentCardIndex(0);
+            }, 2000);
+          }
+        });
+      }
+    });
+
+    return () => ctx.revert();
+  }, [stage]);
 
   const nextCard = () => {
     if (!verdict) return;
